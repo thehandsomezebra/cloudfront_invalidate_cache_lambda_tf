@@ -44,7 +44,7 @@ And this one gives the role full cloudfront access.
 aws iam attach-role-policy --role-name lambda-cloudfront-role --policy-arn arn:aws:iam::aws:policy/CloudFrontFullAccess
 ```
 
-*If giving full access doesn't suit you, You are welcome to create your own policy - just be sure it has `cloudfront:CreateInvalidation` .. read more on (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cf-api-permissions-ref.html)[https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cf-api-permissions-ref.html]*
+*If giving full access doesn't suit you, You are welcome to create your own policy - just be sure it has `cloudfront:CreateInvalidation` .. read more on [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cf-api-permissions-ref.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cf-api-permissions-ref.html)*
 
 
 4. Grab the python file from this repo (`cfn-cache.py`). Zip it up.
@@ -72,6 +72,6 @@ aws lambda invoke --function-name lambda-cloudfront-invalidation --cli-binary-fo
 7. If you want it in your Terraform too, check out `main.tf`.
 
 
-8. That's it. Every time that you run your terraform for your CloudFront... it will automatically run that lambda to invalidate the cache.  Because of the `triggers` of `always_run` - It'll force replacement on `aws_lambda_invocation.invoke_lambda`.  Never fear, it's not "replacing" -- it's just triggering a run of the lambda.  See (https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_invocation)[https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_invocation] for more information on the "dynamic invocation".  The "always_run" snippet was from (https://ilhicas.com/2019/08/17/Terraform-local-exec-run-always.html)[https://ilhicas.com/2019/08/17/Terraform-local-exec-run-always.html].
+8. That's it. Every time that you run your terraform for your CloudFront... it will automatically run that lambda to invalidate the cache.  Because of the `triggers` of `always_run` - It'll force replacement on `aws_lambda_invocation.invoke_lambda`.  Never fear, it's not "replacing" -- it's just triggering a run of the lambda.  See [https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_invocation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_invocation) for more information on the "dynamic invocation".  The "always_run" snippet was from [https://ilhicas.com/2019/08/17/Terraform-local-exec-run-always.html](https://ilhicas.com/2019/08/17/Terraform-local-exec-run-always.html).
 
 
